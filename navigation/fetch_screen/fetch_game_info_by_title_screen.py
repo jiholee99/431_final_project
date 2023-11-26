@@ -1,4 +1,5 @@
 import tkinter as tk
+import tkinter.font as tkFont
 import db_operation.fetch_operation as fo
 
 class FetchGameInfoByTitleScreen():
@@ -26,7 +27,8 @@ class FetchGameInfoByTitleScreen():
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         # Creating a listbox widget
-        self.result_listbox = tk.Listbox(fetch_game_info_by_title_frame, yscrollcommand=scrollbar.set)
+        monospace_font = tkFont.Font(family="Courier", size=10)
+        self.result_listbox = tk.Listbox(fetch_game_info_by_title_frame, yscrollcommand=scrollbar.set, font=monospace_font)
         self.result_listbox.pack(fill="both", expand=True, padx=10, pady=pady)
 
         # Attaching the listbox to the scrollbar
@@ -40,13 +42,30 @@ class FetchGameInfoByTitleScreen():
         go_back_to_fetch_screen_button = tk.Button(fetch_game_info_by_title_frame, text="Go back to fetch screen", bg="lightblue", command=self.go_back_to_fetch_screen)
         go_back_to_fetch_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
     
+    def format_result(self, row):
+        formatted_row = []
+
+        for index, item in enumerate(row):
+            if index == 2:  # Assuming the third item should be formatted as a float
+                if isinstance(item, float):
+                    formatted_item = f"{item:<10.2f}"
+                else:
+                    formatted_item = f"{str(item):<10}"
+            else:  # For other items (integers or strings)
+                formatted_item = f"{str(item):<20}"
+
+            formatted_row.append(formatted_item)
+
+        return " ".join(formatted_row)
+
     def _fetch_game_info_by_title(self, game_title_textfield):
         game_title = game_title_textfield.get()
         result_items = fo.FetchOperation().fetch(game_title)  # Assuming this returns a list of items
 
         self.result_listbox.delete(0, tk.END)  # Clear the Listbox
-        for item in result_items:
-            self.result_listbox.insert(tk.END, item)  # Insert each item
+        for row in result_items:
+            formatted_row = self.format_result(row)
+            self.result_listbox.insert(tk.END, formatted_row)
 
 
 
