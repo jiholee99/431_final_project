@@ -1,10 +1,10 @@
 import tkinter as tk
-
+import tkinter.font as tkFont
 
 import navigation.fetch_screen.fetch_main_screen as fs
-import navigation.insert_screen as inst
-import navigation.update_screen as upd
-import navigation.delete_screen as dlt
+import navigation.insert_screen.insert_screen as inst
+import navigation.update_screen.update_screen as upd
+import navigation.delete_screen.delete_screen as dlt
 
 class MainApp :
     def __init__(self, master) :

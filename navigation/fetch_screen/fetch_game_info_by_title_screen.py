@@ -18,6 +18,10 @@ class FetchGameInfoByTitleScreen():
         fetch_game_info_by_title_title = tk.Label(fetch_game_info_by_title_frame, text="Fetching Functions",bg="lightblue",)
         fetch_game_info_by_title_title.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Description for textfield
+        description_label = tk.Label(fetch_game_info_by_title_frame, text="Enter the game title below", bg="lightblue")
+        description_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Textfield for game title
         game_title_textfield = tk.Entry(fetch_game_info_by_title_frame, width=30)
         game_title_textfield.pack(fill="both", expand=False, padx=10, pady=pady)
@@ -48,11 +52,11 @@ class FetchGameInfoByTitleScreen():
         for index, item in enumerate(row):
             if index == 2:  # Assuming the third item should be formatted as a float
                 if isinstance(item, float):
-                    formatted_item = f"{item:<10.2f}"
+                    formatted_item = f"{item:<50.2f}"
                 else:
-                    formatted_item = f"{str(item):<10}"
+                    formatted_item = f"{str(item):<50}"
             else:  # For other items (integers or strings)
-                formatted_item = f"{str(item):<20}"
+                formatted_item = f"{str(item):<50}"
 
             formatted_row.append(formatted_item)
 
@@ -60,8 +64,11 @@ class FetchGameInfoByTitleScreen():
 
     def _fetch_game_info_by_title(self, game_title_textfield):
         game_title = game_title_textfield.get()
-        result_items = fo.FetchOperation().fetch(game_title)  # Assuming this returns a list of items
-
+        result_items = fo.FetchOperation().fetch_game_info_by_title(game_title)  # Assuming this returns a list of items
+        if not result_items:
+            self.result_listbox.delete(0, tk.END)
+            self.result_listbox.insert(tk.END, "Error: No result found")
+            return
         self.result_listbox.delete(0, tk.END)  # Clear the Listbox
         for row in result_items:
             formatted_row = self.format_result(row)

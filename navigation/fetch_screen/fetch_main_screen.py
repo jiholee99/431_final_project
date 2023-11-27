@@ -1,6 +1,8 @@
 import tkinter as tk
 
 import navigation.fetch_screen.fetch_game_info_by_title_screen as fgibt
+import navigation.fetch_screen.fetch_top_selling_game_screen as ftsgs
+import navigation.fetch_screen.fetch_game_within_budget_screen as fgwbs
 
 class FetchMainScreen():
     def __init__(self, initial_frame, master, setup_main_screen):
@@ -23,7 +25,7 @@ class FetchMainScreen():
         game_by_title_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch information about the top selling game
-        top_selling_item_button = tk.Button(fetch_frame, text="See top selling games", bg="lightblue",)
+        top_selling_item_button = tk.Button(fetch_frame, text="See top selling games", bg="lightblue", command= lambda:  ftsgs.FetchTopSellingGameScreen(fetch_frame, self.master, self.setup_fetch_screen))
         top_selling_item_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch information about the top reviewed game
@@ -31,7 +33,7 @@ class FetchMainScreen():
         top_reviewed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch games within their budget
-        budget_game_button = tk.Button(fetch_frame, text="See games within your budget", bg="lightblue",)
+        budget_game_button = tk.Button(fetch_frame, text="See games within your budget", bg="lightblue", command= lambda: fgwbs.FetchGameWithinBudget(fetch_frame, self.master, self.setup_fetch_screen))
         budget_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch games that are popular among streamers by counting the number of streamers playing a certain game.
