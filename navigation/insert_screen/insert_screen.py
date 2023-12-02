@@ -1,5 +1,7 @@
 import tkinter as tk
 
+import navigation.insert_screen.insert_streamer_data as isd
+
 class InsertScreen() :
     def __init__(self, initial_frame, master, setup_main_screen):
         self.initial_frame = initial_frame
@@ -13,14 +15,21 @@ class InsertScreen() :
         pady = 5
 
         # Insert function frame title
-        insert_function_title = tk.Label(insert_frame, text="Inserting Functions",bg="green",)
+        insert_function_title = tk.Label(insert_frame, text="Inserting Functions",)
         insert_function_title.pack(fill="both", expand=False, padx=10, pady=pady)
+
+        # Button: Users can add sales data for each game such as the number of copies sold
+        game_by_title_button = tk.Button(insert_frame, text="Enter information about a streamer", bg="green", command= lambda: isd.InsertStreamerDataScreen(insert_frame, self.master, self.setup_insert_screen))
+        game_by_title_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Go back to main screen
         go_back_to_main_screen_button = tk.Button(insert_frame, text="Go back to main screen", bg="green", command=self.go_back_to_main_screen)
         go_back_to_main_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
-    def setup_insert_screen(self):
+    def setup_insert_screen(self):        
+        # Clear existing content
+        for widget in self.insert_screen_frame.winfo_children():
+            widget.destroy()        
         self.initial_frame.pack_forget()
 
         self.insert_screen_frame.pack(fill="both", expand=True)
