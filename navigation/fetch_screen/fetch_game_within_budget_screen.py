@@ -47,19 +47,16 @@ class FetchGameWithinBudget():
         go_back_to_fetch_screen_button = tk.Button(fetch_game_within_budget_frame, text="Go back to fetch screen", bg="lightblue", command=self.go_back_to_fetch_screen)
         go_back_to_fetch_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
-    def format_result(self, row):
+    def format_result(self, row, is_header=False):
         formatted_row = []
-
+        print(f"Row : {row}")
         for index, item in enumerate(row):
-            if index == 2:
-                if isinstance(item, float):
-                    formatted_item = f"{item:<50.2f}"
-                else:
-                    formatted_item = f"{str(item):<50}"
-            else:
+            if index == 0 or is_header:
                 formatted_item = f"{str(item):<50}"
-
-        return formatted_row
+            else:
+                formatted_item = f"{item:<50.2f}"
+            formatted_row.append(formatted_item)
+        return " ".join(formatted_row)
     
     def _fetch_game_within_budget(self, budget_textfield):
         # Clear result listbox
@@ -67,17 +64,21 @@ class FetchGameWithinBudget():
 
         # Get user input
         budget = budget_textfield.get()
+        print(f"budget entered is {budget}")
 
         # Fetch data
         result = fo.FetchOperation().fetch_game_within_budget(budget)
-        
+        print(f"is result error : {isinstance(result, ert.ErrorReturnType)}")
         if (isinstance(result, ert.ErrorReturnType)):
             self.result_listbox.insert(tk.END, result.get_error_message())
             return
 
         # Display result
-        for row in result:
-            formatted_row = self.format_result(row)
+        for index, row in enumerate(result):
+            if (index == 0):
+                formatted_row = self.format_result(row, True)
+            else :
+                formatted_row = self.format_result(row)
             self.result_listbox.insert(tk.END, formatted_row)
     
     def setup_fetch_game_within_budget_screen(self):

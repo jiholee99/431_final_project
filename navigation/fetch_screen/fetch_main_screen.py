@@ -3,6 +3,8 @@ import tkinter as tk
 import navigation.fetch_screen.fetch_game_info_by_title_screen as fgibt
 import navigation.fetch_screen.fetch_top_selling_game_screen as ftsgs
 import navigation.fetch_screen.fetch_game_within_budget_screen as fgwbs
+import navigation.fetch_screen.fetch_top_reviewed_games_screen as ftrgs
+import navigation.fetch_screen.fetch_popular_among_streamer_screen as fpas
 
 class FetchMainScreen():
     def __init__(self, initial_frame, master, setup_main_screen):
@@ -29,7 +31,7 @@ class FetchMainScreen():
         top_selling_item_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch information about the top reviewed game
-        top_reviewed_game_button = tk.Button(fetch_frame, text="See top reviewed game", bg="lightblue",)
+        top_reviewed_game_button = tk.Button(fetch_frame, text="See top reviewed game", bg="lightblue", command= lambda: ftrgs.FetchTopReviewedGamesScreen(fetch_frame, self.master, self.setup_fetch_screen))
         top_reviewed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch games within their budget
@@ -37,7 +39,7 @@ class FetchMainScreen():
         budget_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can fetch games that are popular among streamers by counting the number of streamers playing a certain game.
-        popular_streamer_game_button = tk.Button(fetch_frame, text="See games that are popular among streamers", bg="lightblue",)
+        popular_streamer_game_button = tk.Button(fetch_frame, text="See games that are popular among streamers", bg="lightblue", command= lambda: fpas.FetchPopularAmongStreamerScreen(fetch_frame, self.master, self.setup_fetch_screen))
         popular_streamer_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can get the most reviewed and streamed games per platform which includes game company

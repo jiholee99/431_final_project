@@ -1,12 +1,13 @@
 import mysql.connector
 import type.error_return_type as error_return_type
+import config as cfg
 class FetchOperation:
     def __init__(self):
         self.mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="dudeabides1999",
-        database="final_project_431"
+        host=cfg.host,
+        user=cfg.user,
+        password=cfg.password,
+        database=cfg.database
         )
         self.mycursor = self.mydb.cursor()
     
@@ -59,7 +60,6 @@ class FetchOperation:
         '''
         self.mycursor.execute(query)
         myresult = self.mycursor.fetchall()
-        myresult.insert(0, (f"Fetched {amount_of_games} games", ""))
         myresult.insert(1, ("Title", "Sales"))
         return myresult
     
@@ -73,14 +73,50 @@ class FetchOperation:
             if budget == "":
                 budget = 40
             query = f'''
-            T title, price
+            SELECT title, price
             FROM Video_Game
             WHERE price <= {budget}
             ORDER BY price DESC
+            LIMIT 4000
             '''
             self.mycursor.execute(query)
             myresult = self.mycursor.fetchall()
             myresult.insert(0, ("Title", "Price"))
+            return myresult
+        except mysql.connector.errors.Error as err:
+            print(f"mysql error : {err}")
+            errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
+            return errorInstance
+        
+    
+    def fetch_top_reviewed_games(self, amount_of_games):
+        try :
+            if (amount_of_games == ""):
+                amount_of_games = 100
+            if self.contains_non_digit(amount_of_games):
+                errorInstance = error_return_type.ErrorReturnType(error_message="Please enter a valid number")
+                print(f"is error instance : {isinstance(errorInstance, error_return_type.ErrorReturnType)}")
+                return errorInstance
+            query = f'''
+            SELECT 
+                Video_game.title,
+                Video_game.price,
+                COUNT(Reviews.game_id) AS num_reviews,
+                AVG(Reviews.score) AS avg_score
+            FROM 
+                Video_game
+            JOIN 
+                Reviews ON Video_game.game_id = Reviews.game_id
+            GROUP BY 
+                Video_game.game_id, Video_game.title, Video_game.price
+            ORDER BY
+                avg_score DESC,
+                num_reviews DESC
+            LIMIT {amount_of_games};
+            '''
+            self.mycursor.execute(query)
+            myresult = self.mycursor.fetchall()
+            myresult.insert(0, ("Title", "Price", "Number of reviews", "Average score"))
             return myresult
         except mysql.connector.errors.Error as err:
             print(f"mysql error : {err}")
