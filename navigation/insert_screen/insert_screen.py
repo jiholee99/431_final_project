@@ -1,6 +1,7 @@
 import tkinter as tk
 
 import navigation.insert_screen.insert_streamer_data as isd
+import navigation.insert_screen.insert_streamer_platform as isp
 
 class InsertScreen() :
     def __init__(self, initial_frame, master, setup_main_screen):
@@ -18,9 +19,13 @@ class InsertScreen() :
         insert_function_title = tk.Label(insert_frame, text="Inserting Functions",)
         insert_function_title.pack(fill="both", expand=False, padx=10, pady=pady)
 
-        # Button: Users can add sales data for each game such as the number of copies sold
-        game_by_title_button = tk.Button(insert_frame, text="Enter information about a streamer", bg="green", command= lambda: isd.InsertStreamerDataScreen(insert_frame, self.master, self.setup_insert_screen))
-        game_by_title_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        # Button: Users can add information about a Streamer
+        streamer_info_button = tk.Button(insert_frame, text="Enter information about a streamer", bg="green", command= lambda: isd.InsertStreamerDataScreen(insert_frame, self.master, self.setup_insert_screen))
+        streamer_info_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+
+        # Button: Users can add information about what platforms a Streamer streams
+        platform_button = tk.Button(insert_frame, text="Enter information about a platform that a streamer streams", bg="green", command= lambda: isp.InsertStreamerPlatformScreen(insert_frame, self.master, self.setup_insert_screen))
+        platform_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Go back to main screen
         go_back_to_main_screen_button = tk.Button(insert_frame, text="Go back to main screen", bg="green", command=self.go_back_to_main_screen)

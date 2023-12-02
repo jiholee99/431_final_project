@@ -48,6 +48,10 @@ class InsertOperation:
     def insertPlatform(self, streamer_uid, platform):
         #if self.contains_non_digit(amount_of_games):
         #    return False
+        try:                               #test if streamer_uid can be converted to int, return false if fails
+            streamer_uid = int(streamer_uid)
+        except ValueError:
+            return False
         if streamer_uid or platform == "":
             return False
         #print(amount_of_games)
