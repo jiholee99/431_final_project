@@ -67,6 +67,10 @@ class UpdateGameCompanyInfo():
         update_game_company_info_button = tk.Button(update_game_company_info_frame, text="Update game company info", command=lambda: self.update_game_company_info(company_name_textfield, num_employees_textfield, foundation_year_textfield))
         update_game_company_info_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Description for result listbox
+        result_listbox_description = tk.Label(update_game_company_info_frame, text="If your request was successful, the table below will show an upadted value")
+        result_listbox_description.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Creating a scrollbar
         update_game_company_info_scrollbar = tk.Scrollbar(update_game_company_info_frame)
         update_game_company_info_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)

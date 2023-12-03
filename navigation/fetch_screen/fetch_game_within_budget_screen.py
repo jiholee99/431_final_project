@@ -23,6 +23,10 @@ class FetchGameWithinBudget():
         description_label = tk.Label(fetch_game_within_budget_frame, text="Enter your budget below", bg="lightblue")
         description_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Empty string warning
+        empty_string_label = tk.Label(fetch_game_within_budget_frame, text="Empty string will return games under $40 by default", bg="lightblue")
+        empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Textfield for budget
         budget_textfield = tk.Entry(fetch_game_within_budget_frame, width=30)
         budget_textfield.pack(fill="both", expand=False, padx=10, pady=pady)

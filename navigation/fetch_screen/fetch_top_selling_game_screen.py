@@ -22,6 +22,10 @@ class FetchTopSellingGameScreen():
         description_label = tk.Label(fetch_top_selling_game_frame, text="Enter the amount of games you want to fetch below", bg="lightblue")
         description_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Warning for textfield
+        empty_string_label = tk.Label(fetch_top_selling_game_frame, text="Empty string will return 100 games by default", bg="lightblue")
+        empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Textfield for amount of games to fetch
         amount_of_games_textfield = tk.Entry(fetch_top_selling_game_frame, width=30)
         amount_of_games_textfield.pack(fill="both", expand=False, padx=10, pady=pady)

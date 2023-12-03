@@ -22,6 +22,10 @@ class FetchTopReviewedGamesScreen():
         description_label = tkinter.Label(fetch_top_reviewed_games_frame, text="Enter the amount of games you want to fetch below", bg="lightblue")
         description_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Empty string warning
+        empty_string_label = tkinter.Label(fetch_top_reviewed_games_frame, text="Empty string will return 100 games by default", bg="lightblue")
+        empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Textfield for amount of games to fetch
         amount_of_games_textfield = tkinter.Entry(fetch_top_reviewed_games_frame, width=30)
         amount_of_games_textfield.pack(fill="both", expand=False, padx=10, pady=pady)

@@ -60,7 +60,7 @@ class FetchOperation:
         '''
         self.mycursor.execute(query)
         myresult = self.mycursor.fetchall()
-        myresult.insert(1, ("Title", "Sales"))
+        myresult.insert(0, ("Title", "Sales"))
         return myresult
     
     def fetch_game_within_budget(self, budget):

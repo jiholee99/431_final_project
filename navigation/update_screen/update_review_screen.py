@@ -71,6 +71,10 @@ class UpdateReviewScreen():
         update_review_score_button = tk.Button(update_review_frame, text="Update review score", bg="yellow", command=lambda: self.update_review_score(game_id_textfield, reviewer_id_textfield, post_id_textfield, score_textfield))
         update_review_score_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Description for listbox
+        update_review_description = tk.Label(update_review_frame, text="If your request was successful, the table below will show an upadted review value",)
+        update_review_description.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Creating a scrollbar
         update_review_scrollbar = tk.Scrollbar(update_review_frame)
         update_review_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)

@@ -62,6 +62,10 @@ class UpdateGameSalesDataScreen():
         update_game_sales_data_button = tk.Button(update_game_sales_data_frame, text="Update game sales data", bg="yellow", command=lambda: self.update_game_sales_data(game_id_textfield, number_of_copies_sold_textfield))
         update_game_sales_data_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Description for result listbox
+        result_listbox_label = tk.Label(update_game_sales_data_frame, text="If your request was successful, the table below will show an upadted value")
+        result_listbox_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Creating a scrollbar
         scrollbar_number_of_copies_sold = tk.Scrollbar(update_game_sales_data_frame)
         scrollbar_number_of_copies_sold.pack(side=tk.RIGHT, fill=tk.Y)
