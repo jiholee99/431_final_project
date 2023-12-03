@@ -93,7 +93,7 @@ class FetchOperation:
         try :
             if (amount_of_games == ""):
                 amount_of_games = 100
-            if self.contains_non_digit(amount_of_games):
+            elif self.contains_non_digit(amount_of_games):
                 errorInstance = error_return_type.ErrorReturnType(error_message="Please enter a valid number")
                 print(f"is error instance : {isinstance(errorInstance, error_return_type.ErrorReturnType)}")
                 return errorInstance
@@ -120,5 +120,89 @@ class FetchOperation:
             return myresult
         except mysql.connector.errors.Error as err:
             print(f"mysql error : {err}")
+            errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
+            return errorInstance
+        
+    def fetch_popular_among_streamer(self, amount_of_games):
+        try :
+            if (amount_of_games == ""):
+                amount_of_games = 100
+            elif self.contains_non_digit(amount_of_games):
+                errorInstance = error_return_type.ErrorReturnType(error_message="Please enter a valid number")
+                return errorInstance
+            query = f'''
+            SELECT 
+                vg.title,
+                COUNT(DISTINCT p.streamer_uid) AS streamer_count
+            FROM 
+                Video_game vg JOIN Plays p ON vg.game_id = p.game_id
+            GROUP BY 
+                vg.game_id
+            ORDER BY 
+                streamer_count DESC
+            LIMIT {amount_of_games};
+            '''
+            self.mycursor.execute(query)
+            myresult = self.mycursor.fetchall()
+            myresult.insert(0, ("Title", "# of streamers playing"))
+            return myresult
+        except mysql.connector.errors.Error as err:
+            print(f"mysql error : {err}")
+            errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
+            return errorInstance
+        
+    def fetch_most_reviewed_streamed(self):
+        try :
+            query = '''
+            WITH ReviewCounts AS (
+                SELECT
+                    vg.game_id,
+                    COUNT(*) AS review_count
+                FROM
+                    Video_game vg
+                JOIN Reviews r ON vg.game_id = r.game_id
+                GROUP BY vg.game_id
+            ),
+            StreamCounts AS (
+                SELECT
+                    vg.game_id,
+                    COUNT(*) AS stream_count
+                FROM
+                    Video_game vg
+                JOIN Plays p ON vg.game_id = p.game_id
+                GROUP BY vg.game_id
+            ),
+            GameCounts AS (
+                SELECT
+                    vg.game_id,
+                    vg.title,
+                    vg.company_name,
+                    COALESCE(rc.review_count, 0) AS review_count,
+                    COALESCE(sc.stream_count, 0) AS stream_count,
+                    ia.platform_name
+                FROM
+                    Video_game vg
+                LEFT JOIN ReviewCounts rc ON vg.game_id = rc.game_id
+                LEFT JOIN StreamCounts sc ON vg.game_id = sc.game_id
+                JOIN Is_Available ia ON vg.game_id = ia.game_id
+            )
+            SELECT
+                gc.title,
+                gc.company_name,
+                gc.review_count,
+                gc.stream_count,
+                gc.platform_name
+            FROM
+                GameCounts gc
+            ORDER BY
+                gc.platform_name,
+                gc.review_count DESC,
+                gc.stream_count DESC;
+            '''
+            self.mycursor.execute(query)
+            myresult = self.mycursor.fetchall()
+            myresult.insert(0, ("Title", "Developer", "# of reviews", "# of streamers", "Platform"))
+            return myresult
+        except mysql.connector.errors.Error as err:
             errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
             return errorInstance

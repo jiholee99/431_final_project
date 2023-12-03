@@ -50,12 +50,12 @@ class FetchGameInfoByTitleScreen():
         formatted_row = []
 
         for index, item in enumerate(row):
-            if index == 2:  # Assuming the third item should be formatted as a float
+            if index == 2:  
                 if isinstance(item, float):
                     formatted_item = f"{item:<50.2f}"
                 else:
                     formatted_item = f"{str(item):<50}"
-            else:  # For other items (integers or strings)
+            else:  
                 formatted_item = f"{str(item):<50}"
 
             formatted_row.append(formatted_item)

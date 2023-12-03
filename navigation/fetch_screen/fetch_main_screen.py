@@ -5,6 +5,7 @@ import navigation.fetch_screen.fetch_top_selling_game_screen as ftsgs
 import navigation.fetch_screen.fetch_game_within_budget_screen as fgwbs
 import navigation.fetch_screen.fetch_top_reviewed_games_screen as ftrgs
 import navigation.fetch_screen.fetch_popular_among_streamer_screen as fpas
+import navigation.fetch_screen.fetch_most_reviewed_streamed_screen as fmrss
 
 class FetchMainScreen():
     def __init__(self, initial_frame, master, setup_main_screen):
@@ -43,7 +44,7 @@ class FetchMainScreen():
         popular_streamer_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Users can get the most reviewed and streamed games per platform which includes game company
-        most_reviewed_streamed_game_button = tk.Button(fetch_frame, text="See most reviewed and streamed games per platform", bg="lightblue",)
+        most_reviewed_streamed_game_button = tk.Button(fetch_frame, text="See most reviewed and streamed games per platform", bg="lightblue", command= lambda: fmrss.FetchMostReviewedStreamedScreen(fetch_frame, self.master, self.setup_fetch_screen))
         most_reviewed_streamed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Go back to main screen

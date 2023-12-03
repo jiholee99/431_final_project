@@ -3,9 +3,9 @@ import tkinter.font as tkFont
 
 import navigation.fetch_screen.fetch_main_screen as fs
 import navigation.insert_screen.insert_screen as inst
-import navigation.update_screen.update_screen as upd
+import navigation.update_screen.update_main_screen as upd
 import navigation.delete_screen.delete_screen as dlt
-import navigation.admin_screen.admin_screen as adm
+import navigation.analytical_report_screen.analytical_report_screen as adm
 
 class MainApp :
     def __init__(self, master) :
@@ -63,7 +63,7 @@ class MainApp :
         update_function_parent_frame.configure()
         update_function_parent_frame.pack(fill="both", expand=True)  # Make it expand horizontally
         # Go to updating function page
-        go_to_update_screen_button = tk.Button(update_function_parent_frame, text="Go to updating functions", command= lambda: upd.UpdateScreen(initial_frame, self.master, self.setup_main_screen))
+        go_to_update_screen_button = tk.Button(update_function_parent_frame, text="Go to updating functions", command= lambda: upd.UpdateMainScreen(initial_frame, self.master, self.setup_main_screen))
         go_to_update_screen_button.pack(pady=20, padx=20, expand=True)
 
         # Frame 4 : Deleting functions
@@ -79,7 +79,7 @@ class MainApp :
         admin_function_parent_frame.configure()
         admin_function_parent_frame.pack(fill="both", expand=True)
         # Go to admin function page
-        go_to_admin_screen_button = tk.Button(admin_function_parent_frame, text="Go to admin functions", command= lambda: adm.AdminScreen(initial_frame, self.master, self.setup_main_screen))
+        go_to_admin_screen_button = tk.Button(admin_function_parent_frame, text="Go to analytical report functions", command= lambda: adm.AnalyticalReportScreen(initial_frame, self.master, self.setup_main_screen))
         go_to_admin_screen_button.pack(pady=20, padx=20, expand=True)
 
 if __name__ == "__main__" :
