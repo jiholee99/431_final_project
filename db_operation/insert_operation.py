@@ -16,12 +16,18 @@ class InsertOperation:
         try:                               #test if streamer_uid can be converted to int, return false if fails
             streamer_uid = int(streamer_uid)
         except ValueError:
+            print("streamer_uid cannot be converted to int")
             return False
         try:                               #test if subscribers can be converted to int, return false if fails
             subscribers = int(subscribers)
         except ValueError:
+            print("subscribers cannot be converted to int")
             return False
-        if streamer_uid or username == "": # checks for empty strings in streamer_uid or username
+        if streamer_uid == "": # checks for empty strings in streamer_uid
+            print("streamer_uid is blank")
+            return False
+        if username == "": # checks for empty strings in username
+            print("username is blank")
             return False
         if subscribers == "":              # if subscribers is empty, set subscribers to 0
             subscribers = 0
@@ -29,14 +35,15 @@ class InsertOperation:
         
         query = f'''
         INSERT INTO Streamer(streamer_uid, username, subscribers)
-        VALUES({streamer_uid}, {username}, {subscribers});
+        VALUES({streamer_uid}, '%{username}%', {subscribers});
         '''
         self.mycursor.execute(query)
+        self.mydb.commit()
         #myresult = self.mycursor.fetchall()
         #myresult.insert(0, (f"Fetched all title that contains {game_title}", ""))
         #myresult.insert(1, ("Title", "Release Date", "Publisher", "Platform"))
         #return myresult
-        return "Inserted streamer info: Streamer User ID:{streamer_uid}, Username: {username}, Subscribers: {subscribers}"
+        return f"Inserted streamer info: Streamer User ID:{streamer_uid}, Username: {username}, Subscribers: {subscribers}"
 
     #def contains_non_digit(self,input_string):
     #    for char in input_string:
@@ -51,15 +58,24 @@ class InsertOperation:
         try:                               #test if streamer_uid can be converted to int, return false if fails
             streamer_uid = int(streamer_uid)
         except ValueError:
+            print("ValueError with the streamer_uid")
             return False
-        if streamer_uid or platform == "":
+        if streamer_uid == "":
+            print("streamer_uid is blank")
+            print(streamer_uid)
             return False
+        if platform == "":
+            print("platform is blank")
+            print(platform)
+            return False
+        streamer_uid = int(streamer_uid)
         #print(amount_of_games)
         query = f'''
-        INSERT INTO streams_on(streamer_uid, platform)
-        VALUES({streamer_uid}, {platform});
+        INSERT INTO streams_on(streamer_uid, platform_name)
+        VALUES({streamer_uid}, '%{platform}%');
         '''
         self.mycursor.execute(query)
+        self.mydb.commit()
         #myresult = self.mycursor.fetchall()
         #myresult.insert(1, ("Title", "Sales"))
         #return myresult

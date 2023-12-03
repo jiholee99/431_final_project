@@ -24,8 +24,8 @@ class InsertScreen() :
         streamer_info_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button: Users can add information about what platforms a Streamer streams
-        platform_button = tk.Button(insert_frame, text="Enter information about a platform that a streamer streams", bg="green", command= lambda: isp.InsertStreamerPlatformScreen(insert_frame, self.master, self.setup_insert_screen))
-        platform_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        #platform_button = tk.Button(insert_frame, text="Enter information about a platform that a streamer streams", bg="green", command= lambda: isp.InsertStreamerPlatformScreen(insert_frame, self.master, self.setup_insert_screen))
+        #platform_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Go back to main screen
         go_back_to_main_screen_button = tk.Button(insert_frame, text="Go back to main screen", bg="green", command=self.go_back_to_main_screen)

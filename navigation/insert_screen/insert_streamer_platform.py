@@ -31,19 +31,19 @@ class InsertStreamerPlatformScreen():
         platform_textfield.pack(fill="both", expand=False, padx=10, pady=pady)
 
         # Creating a scrollbar
-        #scrollbar = tk.Scrollbar(insertStreamerFrame)
-        #scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        scrollbar = tk.Scrollbar(insertStreamerFrame)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
         # Creating a listbox widget
-        #monospace_font = tkFont.Font(family="Courier", size=10)
-        #self.result_listbox = tk.Listbox(insertStreamerFrame, yscrollcommand=scrollbar.set, font=monospace_font)
-        #self.result_listbox.pack(fill="both", expand=True, padx=10, pady=pady)
+        monospace_font = tkFont.Font(family="Courier", size=10)
+        self.result_listbox = tk.Listbox(insertStreamerFrame, yscrollcommand=scrollbar.set, font=monospace_font)
+        self.result_listbox.pack(fill="both", expand=True, padx=10, pady=pady)
 
         # Attaching the listbox to the scrollbar
-        #scrollbar.config(command=self.result_listbox.yview)
+        scrollbar.config(command=self.result_listbox.yview)
         # Insert button
-        insert_game_info_by_title_button = tk.Button(insertStreamerFrame, text="Insert", bg=bgColor, command=lambda: self._insert_streamer(uid_textfield, platform_textfield))
-        insert_game_info_by_title_button.pack(fill="both", expand=False, padx=10, pady=pady)
+        insert_platform = tk.Button(insertStreamerFrame, text="Insert", bg=bgColor, command=lambda: self._insert_platform(uid_textfield, platform_textfield))
+        insert_platform.pack(fill="both", expand=False, padx=10, pady=pady)
 
 
         # Button : Go back to insert screen
@@ -66,11 +66,17 @@ class InsertStreamerPlatformScreen():
 
         return " ".join(formatted_row)
 
-    def _insert_streamer(self, uid_textfield, platform_textfield):
+    def _insert_platform(self, uid_textfield, platform_textfield):
         uid = uid_textfield.get()
         platform = platform_textfield.get()
         #insertStreamerInfo = io.InsertOperation().insertStreamerInfo(uid, username, subscribers)  # Assuming this inserts the streamer's information properly
-        io.InsertOperation().insertPlatform(uid, platform)
+        dataConfirmText = io.InsertOperation().insertPlatform(uid, platform)
+        if dataConfirmText == False:
+            self.result_listbox.delete(0, tk.END)
+            self.result_listbox.insert(tk.END, "Error, invalid input.")
+        else:
+            self.result_listbox.delete(0, tk.END)
+            self.result_listbox.insert(tk.END, dataConfirmText)
         """
         if not result_items:
             self.result_listbox.delete(0, tk.END)

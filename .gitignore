@@ -19,3 +19,4 @@ navigation/fetch_screen/__pycache__/fetch_top_reviewed_games_screen.cpython-311.
 navigation/insert_screen/__pycache__/insert_streamer_data.cpython-311.pyc
 db_operation/__pycache__/insert_operation.cpython-311.pyc
 navigation/insert_screen/__pycache__/insert_streamer_platform.cpython-311.pyc
+*.pyc
