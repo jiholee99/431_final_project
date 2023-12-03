@@ -19,14 +19,15 @@ class FetchGameWithinBudget():
         fetch_game_within_budget_title = tk.Label(fetch_game_within_budget_frame, text="Fetching Functions",bg="lightblue",)
         fetch_game_within_budget_title.pack(fill="both", expand=False, padx=10, pady=pady)
 
-        # Description for textfield
-        description_label = tk.Label(fetch_game_within_budget_frame, text="Enter your budget below", bg="lightblue")
-        description_label.pack(fill="both", expand=False, padx=10, pady=pady)
-
         # Empty string warning
-        empty_string_label = tk.Label(fetch_game_within_budget_frame, text="Empty string will return games under $40 by default", bg="lightblue")
+        empty_string_label = tk.Label(fetch_game_within_budget_frame, text="Empty string will return games under $40 by default", fg="red")
         empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Description for textfield
+        description_label = tk.Label(fetch_game_within_budget_frame, text="Enter your budget below",)
+        description_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
+        
         # Textfield for budget
         budget_textfield = tk.Entry(fetch_game_within_budget_frame, width=30)
         budget_textfield.pack(fill="both", expand=False, padx=10, pady=pady)
@@ -53,7 +54,6 @@ class FetchGameWithinBudget():
 
     def format_result(self, row, is_header=False):
         formatted_row = []
-        print(f"Row : {row}")
         for index, item in enumerate(row):
             if index == 0 or is_header:
                 formatted_item = f"{str(item):<50}"
@@ -68,11 +68,9 @@ class FetchGameWithinBudget():
 
         # Get user input
         budget = budget_textfield.get()
-        print(f"budget entered is {budget}")
 
         # Fetch data
         result = fo.FetchOperation().fetch_game_within_budget(budget)
-        print(f"is result error : {isinstance(result, ert.ErrorReturnType)}")
         if (isinstance(result, ert.ErrorReturnType)):
             self.result_listbox.insert(tk.END, result.get_error_message())
             return

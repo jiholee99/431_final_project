@@ -50,7 +50,7 @@ class InsertStreamerDataScreen():
 
 
         # Button : Go back to insert screen
-        go_back_to_insert_screen_button = tk.Button(insertStreamerFrame, text="Go back to insert screen", bg=bgColor, command=self.go_back_to_insert_screen)
+        go_back_to_insert_screen_button = tk.Button(insertStreamerFrame, text="Go back", fg="blue", command=self.go_back_to_insert_screen)
         go_back_to_insert_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
     
     def format_result(self, row):

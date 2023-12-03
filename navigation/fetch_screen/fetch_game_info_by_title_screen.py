@@ -50,12 +50,9 @@ class FetchGameInfoByTitleScreen():
         formatted_row = []
 
         for index, item in enumerate(row):
-            if index == 2:  
-                if isinstance(item, float):
-                    formatted_item = f"{item:<50.2f}"
-                else:
-                    formatted_item = f"{str(item):<50}"
-            else:  
+            if isinstance(item, float):
+                formatted_item = f"{item:<50.2f}"
+            else:
                 formatted_item = f"{str(item):<50}"
 
             formatted_row.append(formatted_item)
@@ -73,7 +70,6 @@ class FetchGameInfoByTitleScreen():
         for row in result_items:
             formatted_row = self.format_result(row)
             self.result_listbox.insert(tk.END, formatted_row)
-
 
 
     def setup_fetch_game_info_by_title_screen(self):

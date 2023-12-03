@@ -28,11 +28,9 @@ class UpdateMainScreen():
         update_review_score_button = tk.Button(update_frame, text="Update review score", bg="yellow", command= lambda: urs.UpdateReviewScreen(update_frame, self.master, self.setup_update_screen))
         update_review_score_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
-
         # Button : Users can edit any information about a game that is wrong
         edit_game_info_button = tk.Button(update_frame, text="Edit Game company",  command= lambda: ugci.UpdateGameCompanyInfo(update_frame, self.master, self.setup_update_screen))
         edit_game_info_button.pack(fill="both", expand=False, padx=10, pady=pady)
-
 
         # Button : Go back to main screen
         go_back_to_main_screen_button = tk.Button(update_frame, text="Go back to main screen", fg="blue", command=self.go_back_to_main_screen)

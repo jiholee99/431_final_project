@@ -18,7 +18,7 @@ class FetchPopularAmongStreamerScreen():
         fetch_popular_among_streamer_title.pack(fill="both", expand=False, padx=10, pady=10)
 
         #  Empty string warning
-        empty_string_label = tk.Label(fetch_popular_among_streamer_frame, text="Empty string will return 100 games by default",)
+        empty_string_label = tk.Label(fetch_popular_among_streamer_frame, text="Empty string will return 100 games by default", fg="red")
         empty_string_label.pack(fill="both", expand=False, padx=10, pady=10)
 
         # Amount of games to fetch

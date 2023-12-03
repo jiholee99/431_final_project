@@ -39,7 +39,7 @@ class UpdateGameSalesDataScreen():
         # 2 Textfield game_id and number of copies sold
 
         # Warning label
-        warning_label = tk.Label(update_game_sales_data_frame, text="Warning: Please make sure you have the correct game_id before proceeding", bg="yellow")
+        warning_label = tk.Label(update_game_sales_data_frame, text="Warning: Please make sure you have the correct game_id before proceeding", fg="red")
         warning_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
         # Description for game_id textfield description
@@ -77,7 +77,7 @@ class UpdateGameSalesDataScreen():
 
         
         # Button : Go back to update screen
-        go_back_to_update_screen_button = tk.Button(update_game_sales_data_frame, text="Go back to update screen", bg="yellow", command=self.go_back_to_update_screen)
+        go_back_to_update_screen_button = tk.Button(update_game_sales_data_frame, text="Go back to update screen", fg="blue", command=self.go_back_to_update_screen)
         go_back_to_update_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
     def format_game_id_result(self, row, is_header=False):

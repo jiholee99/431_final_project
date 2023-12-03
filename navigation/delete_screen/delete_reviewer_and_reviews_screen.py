@@ -92,9 +92,10 @@ class DeleteReviewerAndReviewsScreen():
 
     def delete_reviewer_and_reviews(self, reviewer_textfield):
         reviewer_id = reviewer_textfield.get()
-        if reviewer_id == "":
+        if reviewer_id == "" or (reviewer_id.isdigit() == False):
+            tkMessageBox.showerror("Error", "Please enter a valid reviewer ID")
             return
-        print(reviewer_id)
+        
 
         remove_result = do.DeleteOperation().delete_reviewer_and_reviews(reviewer_id)
 

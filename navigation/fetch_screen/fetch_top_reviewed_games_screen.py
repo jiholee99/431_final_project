@@ -18,13 +18,13 @@ class FetchTopReviewedGamesScreen():
         fetch_top_reviewed_games_title = tkinter.Label(fetch_top_reviewed_games_frame, text="Fetching Functions",bg="lightblue",)
         fetch_top_reviewed_games_title.pack(fill="both", expand=False, padx=10, pady=pady)
 
-        # Description for textfield
-        description_label = tkinter.Label(fetch_top_reviewed_games_frame, text="Enter the amount of games you want to fetch below", bg="lightblue")
-        description_label.pack(fill="both", expand=False, padx=10, pady=pady)
-
         # Empty string warning
         empty_string_label = tkinter.Label(fetch_top_reviewed_games_frame, text="Empty string will return 100 games by default", bg="lightblue")
         empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
+        # Description for textfield
+        description_label = tkinter.Label(fetch_top_reviewed_games_frame, text="Enter the amount of games you want to fetch below", bg="lightblue")
+        description_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
         # Textfield for amount of games to fetch
         amount_of_games_textfield = tkinter.Entry(fetch_top_reviewed_games_frame, width=30)
@@ -41,11 +41,11 @@ class FetchTopReviewedGamesScreen():
 
         # Attaching the listbox to the scrollbar
         scrollbar.config(command=self.result_listbox.yview)
+
         # Fetch button
         fetch_top_reviewed_games_button = tkinter.Button(fetch_top_reviewed_games_frame, text="Fetch", bg="lightblue", command=lambda: self._fetch_top_reviewed_games(amount_of_games_textfield))
         fetch_top_reviewed_games_button.pack(fill="both", expand=False, padx=10, pady=pady)
         
-
         # Button : Go back to fetch screen
         go_back_to_fetch_screen_button = tkinter.Button(fetch_top_reviewed_games_frame, text="Go back to fetch screen", bg="lightblue", command=self.go_back_to_fetch_screen)
         go_back_to_fetch_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
@@ -69,7 +69,6 @@ class FetchTopReviewedGamesScreen():
         amount_of_games = amount_of_games_textfield.get()
         # Get result
         result = fo.FetchOperation().fetch_top_reviewed_games(amount_of_games)
-
         
         if (isinstance(result, error_return_type.ErrorReturnType)):
             self.result_listbox.insert(tkinter.END, result.get_error_message())
@@ -87,6 +86,7 @@ class FetchTopReviewedGamesScreen():
         # Clear existing content
         for widget in self.fetch_top_reviewed_games_screen_frame.winfo_children():
             widget.destroy()
+            
         self.fetch_main_screen_frame.pack_forget()
 
         self.fetch_top_reviewed_games_screen_frame.pack(fill="both", expand=True)

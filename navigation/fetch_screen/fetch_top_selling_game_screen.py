@@ -18,13 +18,13 @@ class FetchTopSellingGameScreen():
         fetch_top_selling_game_title = tk.Label(fetch_top_selling_game_frame, text="Fetching Functions",bg="lightblue",)
         fetch_top_selling_game_title.pack(fill="both", expand=False, padx=10, pady=pady)
 
+        # Label in case user enters empty string
+        empty_string_label = tk.Label(fetch_top_selling_game_frame, text="Empty string will return 100 games by default", bg="lightblue")
+        empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
+
         # Description for textfield
         description_label = tk.Label(fetch_top_selling_game_frame, text="Enter the amount of games you want to fetch below", bg="lightblue")
         description_label.pack(fill="both", expand=False, padx=10, pady=pady)
-
-        # Warning for textfield
-        empty_string_label = tk.Label(fetch_top_selling_game_frame, text="Empty string will return 100 games by default", bg="lightblue")
-        empty_string_label.pack(fill="both", expand=False, padx=10, pady=pady)
 
         # Textfield for amount of games to fetch
         amount_of_games_textfield = tk.Entry(fetch_top_selling_game_frame, width=30)
@@ -41,11 +41,11 @@ class FetchTopSellingGameScreen():
 
         # Attaching the listbox to the scrollbar
         scrollbar.config(command=self.result_listbox.yview)
+
         # Fetch button
         fetch_top_selling_game_button = tk.Button(fetch_top_selling_game_frame, text="Fetch", bg="lightblue", command=lambda: self._fetch_top_selling_game(amount_of_games_textfield))
         fetch_top_selling_game_button.pack(fill="both", expand=False, padx=10, pady=pady)
         
-
         # Button : Go back to fetch screen
         go_back_to_fetch_screen_button = tk.Button(fetch_top_selling_game_frame, text="Go back to fetch screen", bg="lightblue", command=self.go_back_to_fetch_screen)
         go_back_to_fetch_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
@@ -54,11 +54,8 @@ class FetchTopSellingGameScreen():
         formatted_row = []
 
         for index, item in enumerate(row):
-            if index == 2:
-                if isinstance(item, float):
-                    formatted_item = f"{item:<50.2f}"
-                else:
-                    formatted_item = f"{str(item):<50}"
+            if isinstance(item, float):
+                formatted_item = f"{item:<50.2f}"
             else:
                 formatted_item = f"{str(item):<50}"
 

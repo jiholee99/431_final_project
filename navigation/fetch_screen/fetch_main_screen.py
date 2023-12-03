@@ -21,34 +21,34 @@ class FetchMainScreen():
 
         # Fetch function frame title
         fetch_function_title = tk.Label(fetch_frame, text="Fetching Functions",bg="lightblue",)
-        fetch_function_title.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        fetch_function_title.pack(fill="both", expand=False, padx=10, pady=pady)  
 
         # Button: Users can fetch information about a video game’s publisher, released platforms, and date of release for a given game title
         game_by_title_button = tk.Button(fetch_frame, text="See video game information by title", bg="lightblue", command= lambda: fgibt.FetchGameInfoByTitleScreen(fetch_frame, self.master, self.setup_fetch_screen))
-        game_by_title_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        game_by_title_button.pack(fill="both", expand=False, padx=10, pady=pady)  
 
         # Button : Users can fetch information about the top selling game
         top_selling_item_button = tk.Button(fetch_frame, text="See top selling games", bg="lightblue", command= lambda:  ftsgs.FetchTopSellingGameScreen(fetch_frame, self.master, self.setup_fetch_screen))
-        top_selling_item_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        top_selling_item_button.pack(fill="both", expand=False, padx=10, pady=pady)  
 
         # Button : Users can fetch information about the top reviewed game
         top_reviewed_game_button = tk.Button(fetch_frame, text="See top reviewed game", bg="lightblue", command= lambda: ftrgs.FetchTopReviewedGamesScreen(fetch_frame, self.master, self.setup_fetch_screen))
-        top_reviewed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        top_reviewed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  
 
         # Button : Users can fetch games within their budget
         budget_game_button = tk.Button(fetch_frame, text="See games within your budget", bg="lightblue", command= lambda: fgwbs.FetchGameWithinBudget(fetch_frame, self.master, self.setup_fetch_screen))
-        budget_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        budget_game_button.pack(fill="both", expand=False, padx=10, pady=pady) 
 
         # Button : Users can fetch games that are popular among streamers by counting the number of streamers playing a certain game.
         popular_streamer_game_button = tk.Button(fetch_frame, text="See games that are popular among streamers", bg="lightblue", command= lambda: fpas.FetchPopularAmongStreamerScreen(fetch_frame, self.master, self.setup_fetch_screen))
-        popular_streamer_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        popular_streamer_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  
 
         # Button : Users can get the most reviewed and streamed games per platform which includes game company
         most_reviewed_streamed_game_button = tk.Button(fetch_frame, text="See most reviewed and streamed games per platform", bg="lightblue", command= lambda: fmrss.FetchMostReviewedStreamedScreen(fetch_frame, self.master, self.setup_fetch_screen))
-        most_reviewed_streamed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
+        most_reviewed_streamed_game_button.pack(fill="both", expand=False, padx=10, pady=pady)  
 
         # Button : Go back to main screen
-        go_back_to_main_screen_button = tk.Button(fetch_frame, text="Go back to main screen", bg="lightblue", command=self.go_back_to_main_screen)
+        go_back_to_main_screen_button = tk.Button(fetch_frame, text="Go back to main screen", fg="blue", command=self.go_back_to_main_screen)
         go_back_to_main_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
     def setup_fetch_screen(self):

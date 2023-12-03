@@ -51,7 +51,7 @@ class FetchOperation:
             return False
         if amount_of_games == "":
             amount_of_games = 100
-        print(amount_of_games)
+        # print(amount_of_games)
         query = f'''
         SELECT title, sales
         FROM Video_Game
@@ -66,9 +66,9 @@ class FetchOperation:
     def fetch_game_within_budget(self, budget):
         try :
             if self.contains_non_digit(budget):
-                print("input format error")
+                # print("input format error")
                 errorInstance = error_return_type.ErrorReturnType(error_message="Please enter a valid number")
-                print(f"is error instance : {isinstance(errorInstance, error_return_type.ErrorReturnType)}")
+                # print(f"is error instance : {isinstance(errorInstance, error_return_type.ErrorReturnType)}")
                 return errorInstance
             if budget == "":
                 budget = 40
@@ -84,7 +84,7 @@ class FetchOperation:
             myresult.insert(0, ("Title", "Price"))
             return myresult
         except mysql.connector.errors.Error as err:
-            print(f"mysql error : {err}")
+            # print(f"mysql error : {err}")
             errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
             return errorInstance
         
@@ -95,7 +95,7 @@ class FetchOperation:
                 amount_of_games = 100
             elif self.contains_non_digit(amount_of_games):
                 errorInstance = error_return_type.ErrorReturnType(error_message="Please enter a valid number")
-                print(f"is error instance : {isinstance(errorInstance, error_return_type.ErrorReturnType)}")
+                # print(f"is error instance : {isinstance(errorInstance, error_return_type.ErrorReturnType)}")
                 return errorInstance
             query = f'''
             SELECT 
@@ -119,7 +119,7 @@ class FetchOperation:
             myresult.insert(0, ("Title", "Price", "Number of reviews", "Average score"))
             return myresult
         except mysql.connector.errors.Error as err:
-            print(f"mysql error : {err}")
+            # print(f"mysql error : {err}")
             errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
             return errorInstance
         
@@ -147,7 +147,7 @@ class FetchOperation:
             myresult.insert(0, ("Title", "# of streamers playing"))
             return myresult
         except mysql.connector.errors.Error as err:
-            print(f"mysql error : {err}")
+            # print(f"mysql error : {err}")
             errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
             return errorInstance
         

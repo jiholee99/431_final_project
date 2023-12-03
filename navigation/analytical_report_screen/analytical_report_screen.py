@@ -22,7 +22,6 @@ class AnalyticalReportScreen():
         delete_review_button = tk.Button(admin_frame, text="Get a game report", bg="yellow", command= lambda: drs.GameReportScreen(admin_frame, self.master, self.setup_analytical_report_screen))
         delete_review_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
-
         # Button : Go back to main screen
         go_back_to_main_screen_button = tk.Button(admin_frame, text="Go back to main screen", fg="blue", command=self.go_back_to_main_screen)
         go_back_to_main_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)

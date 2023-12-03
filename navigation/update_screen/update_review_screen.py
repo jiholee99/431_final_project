@@ -85,7 +85,7 @@ class UpdateReviewScreen():
         self.update_review_listbox.pack(fill="both", expand=True, padx=10, pady=pady)
     
         # Go back Button
-        go_back_button = tk.Button(update_review_frame, text="Go back to update main screen", bg="yellow", command=lambda: self.go_back_to_update_main_screen())
+        go_back_button = tk.Button(update_review_frame, text="Go back to update main screen", fg="blue", command=lambda: self.go_back_to_update_main_screen())
         go_back_button.pack(fill="both", expand=False, padx=10, pady=pady)
     
     def setup_update_review(self):

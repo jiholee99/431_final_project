@@ -21,7 +21,6 @@ class GameReportScreen():
         delete_review_title = tkinter.Label(delete_review_frame, text="Game report",bg="lightblue",)
         delete_review_title.pack(fill="both", expand=False, padx=10, pady=pady)
 
-
         # Sort by frame
         sort_by_frame = tkinter.Frame(delete_review_frame)
         sort_by_frame.pack(fill="both", expand=False, padx=10, pady=pady)

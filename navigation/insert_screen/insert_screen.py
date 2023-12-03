@@ -28,7 +28,7 @@ class InsertScreen() :
         #platform_button.pack(fill="both", expand=False, padx=10, pady=pady)  # Make it expand horizontally
 
         # Button : Go back to main screen
-        go_back_to_main_screen_button = tk.Button(insert_frame, text="Go back to main screen", bg="green", command=self.go_back_to_main_screen)
+        go_back_to_main_screen_button = tk.Button(insert_frame, text="Go back to main screen", fg="blue", command=self.go_back_to_main_screen)
         go_back_to_main_screen_button.pack(fill="both", expand=False, padx=10, pady=pady)
 
     def setup_insert_screen(self):        
