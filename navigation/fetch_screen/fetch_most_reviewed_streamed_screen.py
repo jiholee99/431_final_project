@@ -74,15 +74,15 @@ class FetchMostReviewedStreamedScreen():
             if is_header :
                 if index == 0 or index == 1:
                     formatted_item = f"{str(item):<70}"
-                elif index == 2 or index == 3:
+                elif index == 2 or index == 3 or index == 4:
                     formatted_item = f"{str(item):<20}"
-                elif index == 4:
+                elif index == 5:
                     formatted_item = f"{str(item):<30}"
             elif index == 0 or index == 1:
                 formatted_item = f"{item:<70}"
-            elif index == 2 or index == 3:
+            elif index == 2 or index == 3 or index == 4:
                 formatted_item = f"{item:<20}"
-            elif index == 4:
+            elif index == 5:
                 formatted_item = f"{item:<30}"
             formatted_row.append(formatted_item)
         return " ".join(formatted_row)

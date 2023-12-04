@@ -177,6 +177,8 @@ class FetchOperation:
                     vg.game_id,
                     vg.title,
                     vg.company_name,
+                    gc.foundation_year,
+                    gc.num_employees,
                     COALESCE(rc.review_count, 0) AS review_count,
                     COALESCE(sc.stream_count, 0) AS stream_count,
                     ia.platform_name
@@ -185,10 +187,12 @@ class FetchOperation:
                 LEFT JOIN ReviewCounts rc ON vg.game_id = rc.game_id
                 LEFT JOIN StreamCounts sc ON vg.game_id = sc.game_id
                 JOIN Is_Available ia ON vg.game_id = ia.game_id
+                JOIN Game_company gc ON vg.company_name = gc.company_name
             )
             SELECT
                 gc.title,
                 gc.company_name,
+                gc.num_employees,
                 gc.review_count,
                 gc.stream_count,
                 gc.platform_name
@@ -201,7 +205,7 @@ class FetchOperation:
             '''
             self.mycursor.execute(query)
             myresult = self.mycursor.fetchall()
-            myresult.insert(0, ("Title", "Developer", "# of reviews", "# of streamers", "Platform"))
+            myresult.insert(0, ("Title", "Game company", "# of employees" , "# of reviews", "# of streamers", "Platform"))
             return myresult
         except mysql.connector.errors.Error as err:
             errorInstance = error_return_type.ErrorReturnType(error_message="Database error")
